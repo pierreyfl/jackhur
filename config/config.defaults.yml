@@ -480,7 +480,7 @@ default: &default_settings
   stripe_charges_mode: :destination
 
   # Used to encrypt Stripe api keys
-  app_encryption_key:
+  app_encryption_key: "2617463e32b65ec6645b3cb661f9686f2ab608c18ac930ee1295a1c1170504ed"
 
   ##########################################
   # Admin (sharetribe.com internal)
@@ -506,7 +506,7 @@ production: &production_settings
 
   eager_load: true
 
-  active_storage_service: amazon
+  # active_storage_service: amazon
 
   log_level: INFO
   stripe_private_key_pattern: "\\Ask_live_.{24,200}\\z"

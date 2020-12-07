@@ -493,7 +493,7 @@ class ApplicationController < ActionController::Base
     return false unless @current_user
 
     # Show for super admins
-    return true if @current_user.is_admin?
+    return false if @current_user.is_admin?
 
     # Show for admins if their status is accepted
     @current_user.is_marketplace_admin?(@current_community) &&

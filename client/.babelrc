@@ -1,5 +1,6 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "compact": true,
   "plugins": [
     // Stage 2
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
