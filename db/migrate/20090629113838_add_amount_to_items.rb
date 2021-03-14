@@ -1,4 +1,4 @@
-class AddAmountToItems < ActiveRecord::Migration
+class AddAmountToItems < ActiveRecord::Migration[4.2]
   def self.up
     add_column :items, :amount, :integer, :default => 1
   end

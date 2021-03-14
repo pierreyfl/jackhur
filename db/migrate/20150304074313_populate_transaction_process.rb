@@ -1,4 +1,4 @@
-class PopulateTransactionProcess < ActiveRecord::Migration
+class PopulateTransactionProcess < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO transaction_processes (process, author_is_seller, community_id, created_at, updated_at)

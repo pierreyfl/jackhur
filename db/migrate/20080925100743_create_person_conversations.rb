@@ -1,4 +1,4 @@
-class CreatePersonConversations < ActiveRecord::Migration
+class CreatePersonConversations < ActiveRecord::Migration[4.2]
   def self.up
     create_table :person_conversations do |t|
       t.string :person_id

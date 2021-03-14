@@ -1,4 +1,4 @@
-class MigrateOrganizationCommunities < ActiveRecord::Migration
+class MigrateOrganizationCommunities < ActiveRecord::Migration[4.2]
   def up
     comms_for_orgs = Community.select do |community|
       community.settings["require_organization_membership"] == true

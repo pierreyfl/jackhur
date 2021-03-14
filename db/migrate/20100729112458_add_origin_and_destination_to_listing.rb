@@ -1,4 +1,4 @@
-class AddOriginAndDestinationToListing < ActiveRecord::Migration
+class AddOriginAndDestinationToListing < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :origin, :string
     add_column :listings, :destination, :string

@@ -1,4 +1,4 @@
-class CopyTrialsFromCommunityPlansToMarketplaceTrials < ActiveRecord::Migration
+class CopyTrialsFromCommunityPlansToMarketplaceTrials < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO marketplace_trials (community_id, expires_at, created_at, updated_at)

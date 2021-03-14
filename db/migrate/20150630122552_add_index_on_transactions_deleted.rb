@@ -1,4 +1,4 @@
-class AddIndexOnTransactionsDeleted < ActiveRecord::Migration
+class AddIndexOnTransactionsDeleted < ActiveRecord::Migration[4.2]
   def up
     add_index :transactions, [:community_id, :deleted], name: "transactions_on_cid_and_deleted"
     add_index :transactions, :deleted

@@ -1,4 +1,4 @@
-class CreateMercuryImages < ActiveRecord::Migration
+class CreateMercuryImages < ActiveRecord::Migration[4.2]
   def change
     create_table :mercury_images do |t|
       t.string :image_file_name

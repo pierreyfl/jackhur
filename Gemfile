@@ -25,6 +25,9 @@ gem 'rack-attack', '~> 6.0.0'
 gem 'rest-client', '~> 2.0.2'
 
 gem 'paperclip', '~> 6.0.0'
+gem 'paperclip-ffmpeg'
+gem 'paperclip-av-transcoder'
+gem 'jw_player_helper'
 gem 'delayed_paperclip', '~> 3.0.1'
 
 # Active Storage

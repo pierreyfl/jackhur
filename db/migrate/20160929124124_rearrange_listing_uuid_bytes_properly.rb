@@ -1,4 +1,4 @@
-class RearrangeListingUuidBytesProperly < ActiveRecord::Migration
+class RearrangeListingUuidBytesProperly < ActiveRecord::Migration[4.2]
   def up
     Listing.pluck(:id).each_slice(1000) { |ids|
       uuids = ids.map { UUIDUtils.create_raw }

@@ -1,4 +1,4 @@
-class DropUnusedTables < ActiveRecord::Migration
+class DropUnusedTables < ActiveRecord::Migration[4.2]
   def up
     drop_table :devices
     drop_table :event_feed_events

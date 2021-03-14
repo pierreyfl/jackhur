@@ -1,4 +1,4 @@
-class AddEmailToFeedbacks < ActiveRecord::Migration
+class AddEmailToFeedbacks < ActiveRecord::Migration[4.2]
   def self.up
     add_column :feedbacks, :email, :string
   end

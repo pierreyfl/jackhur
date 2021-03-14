@@ -1,4 +1,4 @@
-class CreateMarketplaceSettings < ActiveRecord::Migration
+class CreateMarketplaceSettings < ActiveRecord::Migration[4.2]
   def up
     create_table :marketplace_settings do |t|
       t.column :shipping_enabled, :boolean, default: false

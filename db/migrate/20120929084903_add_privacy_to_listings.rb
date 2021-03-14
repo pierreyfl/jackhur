@@ -1,4 +1,4 @@
-class AddPrivacyToListings < ActiveRecord::Migration
+class AddPrivacyToListings < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :privacy, :string, :default => "private"
   end

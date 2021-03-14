@@ -1,4 +1,4 @@
-class PopulatePaypalSettings < ActiveRecord::Migration
+class PopulatePaypalSettings < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO payment_settings (active, community_id, payment_gateway, payment_process, commission_from_seller, minimum_price_cents, confirmation_after_days, created_at, updated_at)

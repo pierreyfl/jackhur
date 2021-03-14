@@ -1,4 +1,4 @@
-class MoveListingConversationToTransactions < ActiveRecord::Migration
+class MoveListingConversationToTransactions < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO transactions (id, starter_id, listing_id, conversation_id, automatic_confirmation_after_days, community_id, created_at, updated_at)

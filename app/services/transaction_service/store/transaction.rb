@@ -6,7 +6,7 @@ module TransactionService::Store::Transaction
 
   # booking validation happens before SQL BEGIN-COMMIT block
   def create(tx_data)
-    tx_model = TransactionModel.new(tx_data.except(:content, :booking_fields, :starting_page))
+    tx_model = TransactionModel.new(tx_data.except(:content, :video, :booking_fields, :starting_page))
 
     build_conversation(tx_model, tx_data)
     build_booking(tx_model, tx_data)
@@ -15,10 +15,10 @@ module TransactionService::Store::Transaction
     tx_model
   end
 
-  def add_message(community_id:, transaction_id:, sender_id:, message:)
+  def add_message(community_id:, transaction_id:, sender_id:, message:, counter_offer: nil)
     tx_model = TransactionModel.where(community_id: community_id, id: transaction_id).first
     if tx_model
-      tx_model.conversation.messages.create({content: message, sender_id: sender_id})
+      tx_model.conversation.messages.create({content: message, sender_id: sender_id, counter_offer: counter_offer})
       do_mark_as_unseen_by_other(tx_model, sender_id)
     end
 
@@ -92,6 +92,7 @@ module TransactionService::Store::Transaction
     if tx_data[:content].present?
       conversation.messages.build({
           content: tx_data[:content],
+          video: tx_data[:video],
           sender_id: tx_data[:starter_id]})
     end
   end

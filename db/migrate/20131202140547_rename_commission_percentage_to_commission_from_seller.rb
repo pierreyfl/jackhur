@@ -1,4 +1,4 @@
-class RenameCommissionPercentageToCommissionFromSeller < ActiveRecord::Migration
+class RenameCommissionPercentageToCommissionFromSeller < ActiveRecord::Migration[4.2]
   def up
     rename_column :communities, :commission_percentage, :commission_from_seller
   end

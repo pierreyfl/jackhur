@@ -1,4 +1,4 @@
-class AddSortDateToListing < ActiveRecord::Migration
+class AddSortDateToListing < ActiveRecord::Migration[4.2]
   def up
     add_column :listings, :sort_date, :datetime, :after => :last_modified
 

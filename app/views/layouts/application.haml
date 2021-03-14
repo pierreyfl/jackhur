@@ -28,6 +28,7 @@
       - props = topbar_props
       - cache props do
         = react_component("TopbarApp", props: props, prerender: true, id: 'topbar-container')
+        = render partial: 'layouts/categories'
     - else
       = render partial: 'layouts/global_header', locals: header_props()
 
@@ -98,6 +99,9 @@
     = javascript_include_tag "i18n/#{I18n.locale}"
 
     = javascript_include_tag 'application'
+
+    %script{:crossorigin => "anonymous", :integrity => "sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx", :src => "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"}
+
 
     :javascript
       window.ST.jsonTranslations = #{raw JSONTranslations.get(I18n.locale)}

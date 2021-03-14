@@ -1,4 +1,4 @@
-class CreatePaymentSettings < ActiveRecord::Migration
+class CreatePaymentSettings < ActiveRecord::Migration[4.2]
   def change
     create_table :payment_settings do |t|
       t.column :active, :boolean, null: false

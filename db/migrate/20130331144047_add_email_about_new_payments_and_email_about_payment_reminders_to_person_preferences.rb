@@ -1,4 +1,4 @@
-class AddEmailAboutNewPaymentsAndEmailAboutPaymentRemindersToPersonPreferences < ActiveRecord::Migration
+class AddEmailAboutNewPaymentsAndEmailAboutPaymentRemindersToPersonPreferences < ActiveRecord::Migration[4.2]
   def up
     Person.find_each do |person|
       person.preferences["email_about_new_payments"] = true

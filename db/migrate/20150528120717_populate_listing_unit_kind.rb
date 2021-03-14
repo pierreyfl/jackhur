@@ -1,4 +1,4 @@
-class PopulateListingUnitKind < ActiveRecord::Migration
+class PopulateListingUnitKind < ActiveRecord::Migration[4.2]
   class ListingUnit < ApplicationRecord
   end
 

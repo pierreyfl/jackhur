@@ -132,6 +132,13 @@ module TransactionHelper
         }
       } },
 
+       counter: -> () { {
+        both: {
+          icon: icon_tag("cross", ["icon-fix-rel", "rejected"]),
+          text: "Created a counter offer"
+        }
+      } },
+
       paid: ->() { {
         author: {
           icon: icon_waiting_other,

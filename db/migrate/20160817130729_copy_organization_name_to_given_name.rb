@@ -1,4 +1,4 @@
-class CopyOrganizationNameToGivenName < ActiveRecord::Migration
+class CopyOrganizationNameToGivenName < ActiveRecord::Migration[4.2]
   def up
     execute "UPDATE people SET given_name = organization_name WHERE is_organization = 1 AND given_name IS NULL"
   end

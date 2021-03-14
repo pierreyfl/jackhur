@@ -1,4 +1,4 @@
-class UniqueCategoryListingShapes < ActiveRecord::Migration
+class UniqueCategoryListingShapes < ActiveRecord::Migration[4.2]
   def up
     remove_index :category_listing_shapes, name: "index_listing_shape_category_joins"
 

@@ -1,4 +1,4 @@
-class AddIndecesToPlanTables < ActiveRecord::Migration
+class AddIndecesToPlanTables < ActiveRecord::Migration[4.2]
   def change
     add_index :marketplace_trials, :community_id
     add_index :marketplace_trials, :created_at

@@ -1,4 +1,4 @@
-class CreateMarketplaceConfigurations < ActiveRecord::Migration
+class CreateMarketplaceConfigurations < ActiveRecord::Migration[4.2]
   def change
     create_table :marketplace_configurations do |t|
       t.integer :community_id,    null: false

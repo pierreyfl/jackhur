@@ -1,4 +1,4 @@
-class RemoveMangopayFromPeople < ActiveRecord::Migration
+class RemoveMangopayFromPeople < ActiveRecord::Migration[4.2]
   def up
     remove_column :people, :mangopay_id, :mangopay_beneficiary_id, :bic, :bank_account_owner_name, :iban, :bank_account_owner_address
   end

@@ -1,4 +1,4 @@
-class AddMissingCommunityIdValuesToPeople < ActiveRecord::Migration
+class AddMissingCommunityIdValuesToPeople < ActiveRecord::Migration[4.2]
 
   # The migration that duplicates people is already adding
   # community_id to those newly created rows. This

@@ -1,4 +1,4 @@
-class PopulatePaypalTokenReceiverIds < ActiveRecord::Migration
+class PopulatePaypalTokenReceiverIds < ActiveRecord::Migration[4.2]
   def up
     execute("
       UPDATE paypal_tokens

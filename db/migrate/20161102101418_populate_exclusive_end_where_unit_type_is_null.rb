@@ -1,4 +1,4 @@
-class PopulateExclusiveEndWhereUnitTypeIsNull < ActiveRecord::Migration
+class PopulateExclusiveEndWhereUnitTypeIsNull < ActiveRecord::Migration[4.2]
   def up
     name = "Populate end_on_exclusive for bookings where unit type is NULL"
     exec_update([

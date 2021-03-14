@@ -1,4 +1,4 @@
-class RemoveDuplicateCategoryListingShapes < ActiveRecord::Migration
+class RemoveDuplicateCategoryListingShapes < ActiveRecord::Migration[4.2]
   def up
     add_column :category_listing_shapes, :temp_id, :primary_key
 

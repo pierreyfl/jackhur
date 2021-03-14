@@ -1,4 +1,4 @@
-class CreateInitialPaymentGateways < ActiveRecord::Migration
+class CreateInitialPaymentGateways < ActiveRecord::Migration[4.2]
   def up
     Mangopay.create unless Mangopay.count > 0
     Checkout.create unless Checkout.count > 0

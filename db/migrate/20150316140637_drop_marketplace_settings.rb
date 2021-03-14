@@ -1,4 +1,4 @@
-class DropMarketplaceSettings < ActiveRecord::Migration
+class DropMarketplaceSettings < ActiveRecord::Migration[4.2]
   def up
     drop_table :marketplace_settings
   end

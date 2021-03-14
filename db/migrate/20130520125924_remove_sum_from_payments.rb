@@ -1,4 +1,4 @@
-class RemoveSumFromPayments < ActiveRecord::Migration
+class RemoveSumFromPayments < ActiveRecord::Migration[4.2]
   def up
     remove_column :payments, :sum_cents 
     remove_column :payments, :currency

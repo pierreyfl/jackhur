@@ -19,11 +19,12 @@ class TransactionProcessStateMachine
   state :refunded
   state :dismissed
   state :disputed
+  state :counter
 
   transition from: :not_started,                    to: [:free, :initiated]
   transition from: :initiated,                      to: [:payment_intent_requires_action, :preauthorized]
   transition from: :payment_intent_requires_action, to: [:preauthorized, :payment_intent_action_expired, :payment_intent_failed]
-  transition from: :preauthorized,                  to: [:paid, :rejected, :pending_ext, :errored]
+  transition from: :preauthorized,                  to: [:paid, :rejected, :pending_ext, :errored, :counter]
   transition from: :pending_ext,                    to: [:paid, :rejected]
   transition from: :paid,                           to: [:confirmed, :canceled, :disputed]
   transition from: :disputed,                       to: [:refunded, :dismissed]
@@ -50,6 +51,13 @@ class TransactionProcessStateMachine
   end
 
   after_transition(to: :rejected, after_commit: true) do |transaction|
+    rejecter = transaction.listing.author
+    current_community = transaction.community
+
+    Delayed::Job.enqueue(TransactionStatusChangedJob.new(transaction.id, rejecter.id, current_community.id))
+  end
+
+  after_transition(to: :counter, after_commit: true) do |transaction|
     rejecter = transaction.listing.author
     current_community = transaction.community
 

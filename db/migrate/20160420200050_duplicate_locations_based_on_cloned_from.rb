@@ -1,4 +1,4 @@
-class DuplicateLocationsBasedOnClonedFrom < ActiveRecord::Migration
+class DuplicateLocationsBasedOnClonedFrom < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO locations

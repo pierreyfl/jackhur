@@ -1,4 +1,4 @@
-class MovePricePerToListingUnits < ActiveRecord::Migration
+class MovePricePerToListingUnits < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO listing_units (unit_type, transaction_type_id, created_at, updated_at)

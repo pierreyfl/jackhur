@@ -1,4 +1,4 @@
-class AddValidUntilToListing < ActiveRecord::Migration
+class AddValidUntilToListing < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :valid_until, :date
   end

@@ -1,4 +1,4 @@
-class AddShowRealNameToOtherUsersToPerson < ActiveRecord::Migration
+class AddShowRealNameToOtherUsersToPerson < ActiveRecord::Migration[4.2]
   def self.up
     add_column :people, :show_real_name_to_other_users, :boolean, :default => true
   end

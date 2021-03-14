@@ -52,6 +52,7 @@ class AcceptPreauthorizedConversationsController < ApplicationController
     tx_id = params[:id]
     message = params[:transaction][:message_attributes][:content]
     status = params[:transaction][:status].to_sym
+    counter_offer = params[:transaction][:message_attributes][:counter_offer]
     sender_id = @current_user.id
 
     tx = @current_community.transactions.find(tx_id)
@@ -61,7 +62,7 @@ class AcceptPreauthorizedConversationsController < ApplicationController
       return
     end
 
-    res = accept_or_reject_tx(@current_community.id, tx, status, message, sender_id)
+    res = accept_or_reject_tx(@current_community.id, tx, status, message, sender_id, counter_offer)
 
     if res[:success]
       flash[:notice] = success_msg(res[:flow])
@@ -82,13 +83,15 @@ class AcceptPreauthorizedConversationsController < ApplicationController
 
   private
 
-  def accept_or_reject_tx(community_id, tx, status, message, sender_id)
+  def accept_or_reject_tx(community_id, tx, status, message, sender_id, counter_offer)
     if status == :paid
       accept_tx(community_id, tx, message, sender_id)
     elsif status == :paid_and_close
       accept_tx_and_close(community_id, tx, message, sender_id)
+    elsif status == :counter_offer
+      reject_tx(community_id, tx, message, sender_id, counter_offer)
     elsif status == :rejected
-      reject_tx(community_id, tx, message, sender_id)
+      reject_tx(community_id, tx, message, sender_id, counter_offer)
     else
       { flow: :unknown, success: false }
     end
@@ -114,14 +117,19 @@ class AcceptPreauthorizedConversationsController < ApplicationController
       .or_else({flow: :accept, success: false})
   end
 
-  def reject_tx(community_id, tx, message, sender_id)
+  def reject_tx(community_id, tx, message, sender_id, counter_offer)
     TransactionService::Transaction.reject(community_id: community_id,
                                            transaction_id: tx.id,
                                            message: message,
-                                           sender_id: sender_id)
+                                           sender_id: sender_id,
+                                           counter_offer: counter_offer
+                                           )
       .maybe()
       .map { |_| {flow: :reject, success: true}}
       .or_else({flow: :reject, success: false})
+  end
+
+  def counter_tx(community_id, tx, message, sender_id)
   end
 
   def success_msg(flow)

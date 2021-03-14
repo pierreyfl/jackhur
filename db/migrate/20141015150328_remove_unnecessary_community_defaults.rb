@@ -1,4 +1,4 @@
-class RemoveUnnecessaryCommunityDefaults < ActiveRecord::Migration
+class RemoveUnnecessaryCommunityDefaults < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :category_change_allowed
     remove_column :communities, :custom_fields_allowed

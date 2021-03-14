@@ -1,4 +1,4 @@
-class AddReadToPersonConversation < ActiveRecord::Migration
+class AddReadToPersonConversation < ActiveRecord::Migration[4.2]
   def self.up
     add_column :person_conversations, :read, :boolean, :default => 0
   end

@@ -1,4 +1,4 @@
-class PopulateTestimonialTransactionId < ActiveRecord::Migration
+class PopulateTestimonialTransactionId < ActiveRecord::Migration[4.2]
   def up
     execute("UPDATE testimonials
       INNER JOIN participations ON (testimonials.participation_id = participations.id)

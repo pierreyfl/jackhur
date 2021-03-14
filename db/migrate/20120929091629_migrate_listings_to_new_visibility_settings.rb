@@ -1,4 +1,4 @@
-class MigrateListingsToNewVisibilitySettings < ActiveRecord::Migration
+class MigrateListingsToNewVisibilitySettings < ActiveRecord::Migration[4.2]
   def self.up
     Listing.all.each do |listing|
       case listing.visibility

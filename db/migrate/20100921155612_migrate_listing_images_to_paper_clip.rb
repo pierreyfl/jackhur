@@ -1,4 +1,4 @@
-class MigrateListingImagesToPaperClip < ActiveRecord::Migration
+class MigrateListingImagesToPaperClip < ActiveRecord::Migration[4.2]
   def self.up
     say "This migration will copy the existing images to paperclip."
     say "The old listing_images directory IS NOT DELETED (for backup and safety).", true

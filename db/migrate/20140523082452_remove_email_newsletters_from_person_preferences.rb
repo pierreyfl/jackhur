@@ -1,4 +1,4 @@
-class RemoveEmailNewslettersFromPersonPreferences < ActiveRecord::Migration
+class RemoveEmailNewslettersFromPersonPreferences < ActiveRecord::Migration[4.2]
   def up
     Person.find_each do |person|
       if person.respond_to? :preferences

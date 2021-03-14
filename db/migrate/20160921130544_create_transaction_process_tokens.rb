@@ -1,4 +1,4 @@
-class CreateTransactionProcessTokens < ActiveRecord::Migration
+class CreateTransactionProcessTokens < ActiveRecord::Migration[4.2]
   def up
     create_table :transaction_process_tokens do |t|
       t.column :community_id, :integer, null: false

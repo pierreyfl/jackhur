@@ -1,4 +1,4 @@
-class CreateCustomFieldOptionTitles < ActiveRecord::Migration
+class CreateCustomFieldOptionTitles < ActiveRecord::Migration[4.2]
   def change
     create_table :custom_field_option_titles do |t|
       t.string :value

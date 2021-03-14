@@ -77,6 +77,14 @@
 
       = hidden_field_tag(:listing_id, @listing.id)
 
+      .row
+        .col-6{:style => "font-size: 14px;"}
+          = icon_tag("clock", ["icon-part"])
+          7 Days Delivery
+        .col-6{:style => "font-size: 14px;"}
+          %i.icon-undo
+          Unlimited Revisions
+
       - if @listing_presenter.buyer_fee?
         .row
           .col-12

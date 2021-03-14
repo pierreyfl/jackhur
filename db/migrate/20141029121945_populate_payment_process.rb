@@ -1,4 +1,4 @@
-class PopulatePaymentProcess < ActiveRecord::Migration
+class PopulatePaymentProcess < ActiveRecord::Migration[4.2]
   def up
     execute("
       UPDATE transactions, listings, transaction_types, payment_gateways, communities

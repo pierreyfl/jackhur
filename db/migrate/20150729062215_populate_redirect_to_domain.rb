@@ -1,4 +1,4 @@
-class PopulateRedirectToDomain < ActiveRecord::Migration
+class PopulateRedirectToDomain < ActiveRecord::Migration[4.2]
   def up
     execute("UPDATE communities SET redirect_to_domain = true WHERE domain IS NOT NULL")
   end

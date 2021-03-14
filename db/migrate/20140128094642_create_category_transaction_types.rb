@@ -1,4 +1,4 @@
-class CreateCategoryTransactionTypes < ActiveRecord::Migration
+class CreateCategoryTransactionTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :category_transaction_types do |t|
       t.integer :category_id

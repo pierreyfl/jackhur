@@ -1,4 +1,4 @@
-class AddRealNameRequiredToCommunities < ActiveRecord::Migration
+class AddRealNameRequiredToCommunities < ActiveRecord::Migration[4.2]
   def self.up
     add_column :communities, :real_name_required, :boolean, :default => true
   end

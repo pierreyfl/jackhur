@@ -1,4 +1,4 @@
-class CopyEndOnExclusiveToEndOn < ActiveRecord::Migration
+class CopyEndOnExclusiveToEndOn < ActiveRecord::Migration[4.2]
   def up
     name = "Copy end_on_exclusive to end_on"
     sql = "UPDATE bookings SET end_on = end_on_exclusive"

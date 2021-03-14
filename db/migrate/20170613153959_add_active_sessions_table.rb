@@ -1,4 +1,4 @@
-class AddActiveSessionsTable < ActiveRecord::Migration
+class AddActiveSessionsTable < ActiveRecord::Migration[4.2]
   def up
     create_table :active_sessions, id: false do |t|
       t.string :person_id, limit: 22, null: false

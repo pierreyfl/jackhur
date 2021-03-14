@@ -1,4 +1,4 @@
-class HandleRemovedPersonLocales < ActiveRecord::Migration
+class HandleRemovedPersonLocales < ActiveRecord::Migration[4.2]
   LANGUAGE_MAP = {
     "de-bl" => "de",
     "de-rc" => "de",

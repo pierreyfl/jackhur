@@ -1,4 +1,4 @@
-class CreateShippingAddress < ActiveRecord::Migration
+class CreateShippingAddress < ActiveRecord::Migration[4.2]
   def change
     create_table :shipping_addresses do |t|
       t.column :transaction_id, :integer, null: false

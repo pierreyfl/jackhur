@@ -1,4 +1,4 @@
-class AddUseFbLikeToCommunities < ActiveRecord::Migration
+class AddUseFbLikeToCommunities < ActiveRecord::Migration[4.2]
   def self.up
     add_column :communities, :use_fb_like, :boolean, :default => 0
   end

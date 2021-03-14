@@ -1,4 +1,4 @@
-class CreateListingFollowersTable < ActiveRecord::Migration
+class CreateListingFollowersTable < ActiveRecord::Migration[4.2]
   def self.up
     create_table :listing_followers do |t|
       t.string :person_id

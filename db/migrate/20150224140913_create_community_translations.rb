@@ -1,4 +1,4 @@
-class CreateCommunityTranslations < ActiveRecord::Migration
+class CreateCommunityTranslations < ActiveRecord::Migration[4.2]
   def change
     create_table :community_translations do |t|
       t.integer :community_id,    null: false

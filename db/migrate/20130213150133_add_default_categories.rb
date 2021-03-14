@@ -1,4 +1,4 @@
-class AddDefaultCategories < ActiveRecord::Migration
+class AddDefaultCategories < ActiveRecord::Migration[4.2]
 
 
   def up

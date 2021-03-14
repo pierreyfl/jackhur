@@ -1,4 +1,4 @@
-class ReprocessListingImages < ActiveRecord::Migration
+class ReprocessListingImages < ActiveRecord::Migration[4.2]
   say "This migration will reprocess all the images from #{Listing.count} listings"
 
   def up

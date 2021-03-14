@@ -1,4 +1,4 @@
-class AddVisibilityToItemAndFavor < ActiveRecord::Migration
+class AddVisibilityToItemAndFavor < ActiveRecord::Migration[4.2]
   def self.up
     add_column :items, :visibility, :string, :default => "everybody"
     add_column :favors, :visibility, :string, :default => "everybody"

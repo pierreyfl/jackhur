@@ -1,4 +1,4 @@
-class UpdatePersonIdsBasedOnClonedFrom < ActiveRecord::Migration
+class UpdatePersonIdsBasedOnClonedFrom < ActiveRecord::Migration[4.2]
   def up
     run_migration_tests!
 

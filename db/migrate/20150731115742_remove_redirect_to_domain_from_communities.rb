@@ -1,4 +1,4 @@
-class RemoveRedirectToDomainFromCommunities < ActiveRecord::Migration
+class RemoveRedirectToDomainFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :redirect_to_domain
   end

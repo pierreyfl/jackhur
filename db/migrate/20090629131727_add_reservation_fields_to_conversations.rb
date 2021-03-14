@@ -1,4 +1,4 @@
-class AddReservationFieldsToConversations < ActiveRecord::Migration
+class AddReservationFieldsToConversations < ActiveRecord::Migration[4.2]
   def self.up
     add_column :conversations, :type, :string, :default => 'Conversation'
     add_column :conversations, :reserver_name, :string

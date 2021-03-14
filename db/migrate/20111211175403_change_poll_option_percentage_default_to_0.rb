@@ -1,4 +1,4 @@
-class ChangePollOptionPercentageDefaultTo0 < ActiveRecord::Migration
+class ChangePollOptionPercentageDefaultTo0 < ActiveRecord::Migration[4.2]
   def self.up
     change_column_default(:poll_options, :percentage, 0.0)
   end

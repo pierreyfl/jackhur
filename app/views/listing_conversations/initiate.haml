@@ -19,16 +19,25 @@
     %h2.preauthorize-details-title
       = t("listing_conversations.preauthorize.details")
 
+    %h2
+      = @transaction
+
     %ul.no-bullets
       %li
         %div
           = t("listing_conversations.preauthorize.by", listing: link_to("#{listing.title}", listing_path(listing.id)), author: author_link).html_safe
+      - if params[:counter] == "true"
+        %li
+          = render partial: "transactions/counter_price_break_down", locals: counter_price_break_down_locals.merge(is_author: false)
+      - else
+        %li
+          = render partial: "transactions/price_break_down", locals: price_break_down_locals.merge(is_author: false)
 
-      %li
-        = render partial: "transactions/price_break_down", locals: price_break_down_locals.merge(is_author: false)
+     
 
   = form_tag form_action, method: :post, id: "transaction-form" do
-
+    - if params[:counter] == "true"
+      = hidden_field_tag(:counter, "true")
     = hidden_field_tag(:start_on, start_on&.iso8601 )
     = hidden_field_tag(:end_on, end_on&.iso8601 )
     - if per_hour
@@ -42,7 +51,10 @@
 
       .row
         .col-12
-          = text_area_tag :message, nil, :class => "text_area"
+          = text_area_tag :message, nil, :class => "text_area", rows: "10"
+          .custom-file
+            = file_field_tag :video
+
 
       - if @current_community.transaction_agreement_in_use
         = render :partial => "listing_conversations/transaction_agreement_checkbox"

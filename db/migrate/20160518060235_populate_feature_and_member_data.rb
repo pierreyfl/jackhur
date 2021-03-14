@@ -1,4 +1,4 @@
-class PopulateFeatureAndMemberData < ActiveRecord::Migration
+class PopulateFeatureAndMemberData < ActiveRecord::Migration[4.2]
   def up
     exec_update(
       "UPDATE marketplace_plans mp

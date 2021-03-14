@@ -1,4 +1,4 @@
-class AddPayoutDetailsToPeople < ActiveRecord::Migration
+class AddPayoutDetailsToPeople < ActiveRecord::Migration[4.2]
   def change
     add_column :people, :bank_account_owner_name, :string
     add_column :people, :bank_account_owner_address, :string

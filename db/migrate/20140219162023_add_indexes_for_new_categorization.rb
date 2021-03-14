@@ -1,4 +1,4 @@
-class AddIndexesForNewCategorization < ActiveRecord::Migration
+class AddIndexesForNewCategorization < ActiveRecord::Migration[4.2]
   def up
     add_index :transaction_types, :community_id
     add_index :transaction_type_translations, :transaction_type_id

@@ -1,4 +1,4 @@
-class AddTestGroupNumberToCachedRessiEvents < ActiveRecord::Migration
+class AddTestGroupNumberToCachedRessiEvents < ActiveRecord::Migration[4.2]
   def self.up
     add_column :cached_ressi_events, :test_group_number, :integer
   end

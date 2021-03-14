@@ -1,4 +1,4 @@
-class RemoveOldTranslationFromListingUnit < ActiveRecord::Migration
+class RemoveOldTranslationFromListingUnit < ActiveRecord::Migration[4.2]
   def up
     remove_column :listing_units, :translation_key
   end

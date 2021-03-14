@@ -1,4 +1,4 @@
-class MoveFeedbackDataToTransactions < ActiveRecord::Migration
+class MoveFeedbackDataToTransactions < ActiveRecord::Migration[4.2]
   def up
     execute("UPDATE transactions t
       INNER JOIN participations p ON (t.conversation_id = p.conversation_id)

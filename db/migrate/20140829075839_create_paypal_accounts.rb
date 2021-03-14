@@ -1,4 +1,4 @@
-class CreatePaypalAccounts < ActiveRecord::Migration
+class CreatePaypalAccounts < ActiveRecord::Migration[4.2]
   def change
     create_table :paypal_accounts do |t|
       t.string :person_id, null: false

@@ -1,4 +1,4 @@
-class RemoveOnlyPublicListingsFromCommunities < ActiveRecord::Migration
+class RemoveOnlyPublicListingsFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :only_public_listings
   end

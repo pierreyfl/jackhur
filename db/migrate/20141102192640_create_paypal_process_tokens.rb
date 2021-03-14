@@ -1,4 +1,4 @@
-class CreatePaypalProcessTokens < ActiveRecord::Migration
+class CreatePaypalProcessTokens < ActiveRecord::Migration[4.2]
   def change
     create_table :paypal_process_tokens do |t|
       t.column :process_token, :string, limit: 64, null: false

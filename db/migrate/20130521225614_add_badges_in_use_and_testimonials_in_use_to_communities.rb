@@ -1,4 +1,4 @@
-class AddBadgesInUseAndTestimonialsInUseToCommunities < ActiveRecord::Migration
+class AddBadgesInUseAndTestimonialsInUseToCommunities < ActiveRecord::Migration[4.2]
   def change
     add_column :communities, :badges_in_use, :boolean, :default => true
     add_column :communities, :testimonials_in_use, :boolean, :default => true

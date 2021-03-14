@@ -1,7 +1,7 @@
 class ListingComment < ApplicationRecord
 end
 
-class MigrateListingCommentsForKassi2 < ActiveRecord::Migration
+class MigrateListingCommentsForKassi2 < ActiveRecord::Migration[4.2]
   def self.up
 
     say  "This migration simply makes a comment from each listing_comment."

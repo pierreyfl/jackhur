@@ -1,4 +1,4 @@
-class AddIndexesToTablesInNeed < ActiveRecord::Migration
+class AddIndexesToTablesInNeed < ActiveRecord::Migration[4.2]
   def change
     add_index :community_memberships, [:person_id, :community_id], :name => "memberships"
     add_index :participations, :person_id

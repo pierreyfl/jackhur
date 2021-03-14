@@ -1,4 +1,4 @@
-class PopulateTransactionListingFields < ActiveRecord::Migration
+class PopulateTransactionListingFields < ActiveRecord::Migration[4.2]
   def up
     execute("
 UPDATE transactions t

@@ -1,4 +1,4 @@
-class AddNewIndexes < ActiveRecord::Migration
+class AddNewIndexes < ActiveRecord::Migration[4.2]
   def up
     add_index :communities_payment_gateways, :community_id
   end

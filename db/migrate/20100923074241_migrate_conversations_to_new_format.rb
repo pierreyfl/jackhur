@@ -32,7 +32,7 @@ class PersonConversation < ApplicationRecord
   belongs_to :person
 end
 
-class MigrateConversationsToNewFormat < ActiveRecord::Migration
+class MigrateConversationsToNewFormat < ActiveRecord::Migration[4.2]
   def self.up
 
     say  "Looping through all the #{PersonConversation.count} person_conversations and change them to participations"

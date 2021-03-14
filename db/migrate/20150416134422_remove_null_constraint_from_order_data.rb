@@ -1,4 +1,4 @@
-class RemoveNullConstraintFromOrderData < ActiveRecord::Migration
+class RemoveNullConstraintFromOrderData < ActiveRecord::Migration[4.2]
   def up
     change_column :paypal_payments, :order_id, :string, limit: 64, null: true
     change_column :paypal_payments, :order_date, :datetime, null: true

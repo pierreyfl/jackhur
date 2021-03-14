@@ -1,4 +1,4 @@
-class MoveLastPageLoadDatesFromPersonToCommunityMemberships < ActiveRecord::Migration
+class MoveLastPageLoadDatesFromPersonToCommunityMemberships < ActiveRecord::Migration[4.2]
   def self.up
     Person.all.each do |person|
       person.communities.each do |community|

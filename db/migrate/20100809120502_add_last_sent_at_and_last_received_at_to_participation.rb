@@ -1,4 +1,4 @@
-class AddLastSentAtAndLastReceivedAtToParticipation < ActiveRecord::Migration
+class AddLastSentAtAndLastReceivedAtToParticipation < ActiveRecord::Migration[4.2]
   def self.up
     add_column :participations, :last_sent_at, :datetime
     add_column :participations, :last_received_at, :datetime

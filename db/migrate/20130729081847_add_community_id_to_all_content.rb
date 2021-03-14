@@ -1,4 +1,4 @@
-class AddCommunityIdToAllContent < ActiveRecord::Migration
+class AddCommunityIdToAllContent < ActiveRecord::Migration[4.2]
   def change
     add_column :comments, :community_id, :integer
     add_column :conversations, :community_id, :integer

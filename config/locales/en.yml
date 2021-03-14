@@ -1374,7 +1374,7 @@ en:
     new:
       message: Message
       message_to: "Message to %{author_name}"
-      optional_message_to: "Optional message to %{author_name}"
+      optional_message_to: "Begin the Collaboration -----"
       send_message: "Send message"
       send: Send
       this_message_is_private: "This message is private between you and %{person}. %{person} will be notified of this message by email."

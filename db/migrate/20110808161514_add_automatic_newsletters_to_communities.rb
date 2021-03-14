@@ -1,4 +1,4 @@
-class AddAutomaticNewslettersToCommunities < ActiveRecord::Migration
+class AddAutomaticNewslettersToCommunities < ActiveRecord::Migration[4.2]
   def self.up
     add_column :communities, :automatic_newsletters, :boolean, :default => true
   end

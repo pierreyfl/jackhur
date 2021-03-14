@@ -1,4 +1,4 @@
-class AddProfileAttributesToPeople < ActiveRecord::Migration
+class AddProfileAttributesToPeople < ActiveRecord::Migration[4.2]
   def self.up
     add_column :people, :given_name, :string
     add_column :people, :family_name, :string

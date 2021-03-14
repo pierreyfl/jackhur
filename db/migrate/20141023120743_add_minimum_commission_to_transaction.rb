@@ -1,4 +1,4 @@
-class AddMinimumCommissionToTransaction < ActiveRecord::Migration
+class AddMinimumCommissionToTransaction < ActiveRecord::Migration[4.2]
   def change
     add_column :transactions, :minimum_commission_cents, :integer, default: 0, after: :commission_from_seller
     add_column :transactions, :minimum_commission_currency, :string, after: :minimum_commission_cents

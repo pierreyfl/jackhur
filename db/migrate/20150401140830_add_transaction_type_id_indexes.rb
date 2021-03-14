@@ -1,4 +1,4 @@
-class AddTransactionTypeIdIndexes < ActiveRecord::Migration
+class AddTransactionTypeIdIndexes < ActiveRecord::Migration[4.2]
   def change
     add_index :listing_units, :transaction_type_id
     add_index :listing_units, :listing_shape_id

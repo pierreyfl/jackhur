@@ -1,4 +1,4 @@
-class Small3x2Image < ActiveRecord::Migration
+class Small3x2Image < ActiveRecord::Migration[4.2]
   say "This migration will reprocess the medium sized listing image to 3/2 aspect ratio of #{Community.count} communities"
 
   def up

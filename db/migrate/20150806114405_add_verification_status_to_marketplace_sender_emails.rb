@@ -1,4 +1,4 @@
-class AddVerificationStatusToMarketplaceSenderEmails < ActiveRecord::Migration
+class AddVerificationStatusToMarketplaceSenderEmails < ActiveRecord::Migration[4.2]
   def change
     add_column :marketplace_sender_emails, :verification_status, :string, limit: 32, null: false, after: :email
   end

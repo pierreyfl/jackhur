@@ -1,4 +1,4 @@
-class AddFavorIdToConversations < ActiveRecord::Migration
+class AddFavorIdToConversations < ActiveRecord::Migration[4.2]
   def self.up
     add_column :conversations, :favor_id, :integer
   end

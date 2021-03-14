@@ -1,11 +1,13 @@
 module TransactionService
   class Order
-    attr_reader :community, :tx_params, :listing
+    attr_reader :community, :tx_params, :listing, :transaction
 
-    def initialize(community:, tx_params:, listing:)
+    def initialize(community:, tx_params:, listing:, transaction: nil)
       @community = community
       @tx_params = tx_params
       @listing = listing
+      @transaction = transaction
+      @counter_price = Money.new(@transaction.conversation.messages.last.counter_offer * 100, "EUR")
     end
 
     def price_break_down_locals
@@ -32,9 +34,44 @@ module TransactionService
       }
     end
 
+     def counter_price_break_down_locals
+      {
+         booking: is_booking?,
+         quantity: quantity,
+         start_on: tx_params[:start_on],
+         end_on: tx_params[:end_on],
+         duration: quantity,
+         listing_price:  counter_price,
+         localized_unit_type: translate_unit_from_listing,
+         localized_selector_label: translate_selector_label_from_listing,
+         subtotal: counter_subtotal_to_show,
+         shipping_price: shipping_price_to_show,
+         total: counter_order_total,
+         unit_type: listing.unit_type,
+         start_time: tx_params[:start_time],
+         end_time: tx_params[:end_time],
+         per_hour: tx_params[:per_hour],
+         buyer_fee: counter_buyer_fee,
+         paypal_in_use: paypal_in_use,
+         stripe_in_use: stripe_in_use,
+         total_label: nil
+      }
+    end
+
+
     def item_total
       @item_total ||= unit_price * quantity
     end
+
+    def counter_item_total
+      @counter_item_total ||= counter_price * quantity
+    end
+
+    def counter_price
+      @counter_price
+    end
+
+
 
     def unit_price
       listing.price
@@ -49,6 +86,20 @@ module TransactionService
         else
           0
         end
+    end
+
+    def counter_buyer_fee
+      #return @buyer_fee if defined?(@buyer_fee)
+
+      if stripe_in_use && !paypal_in_use
+        commission = stripe_tx_settings[:commission_from_buyer] || 0
+        minimum_fee_cents = stripe_tx_settings[:minimum_buyer_transaction_fee_cents] || 0
+        relative = (counter_item_total.cents * (commission / 100.0)).to_i
+        fee = [relative, minimum_fee_cents].max
+        @buyer_fee = MoneyUtil.to_money(fee, listing.currency)
+      else
+        @buyer_fee = nil
+      end
     end
 
     def buyer_fee
@@ -68,6 +119,12 @@ module TransactionService
     def order_total
       total = item_total + shipping_total
       total += buyer_fee if buyer_fee
+      total
+    end
+
+    def counter_order_total
+      total = counter_item_total + shipping_total
+      total += counter_buyer_fee if counter_buyer_fee
       total
     end
 
@@ -99,6 +156,10 @@ module TransactionService
 
     def subtotal_to_show
       item_total if order_total != unit_price
+    end
+
+    def counter_subtotal_to_show
+      counter_item_total if counter_order_total != counter_price
     end
 
     def shipping_price_to_show

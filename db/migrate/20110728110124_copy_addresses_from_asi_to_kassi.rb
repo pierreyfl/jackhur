@@ -1,4 +1,4 @@
-class CopyAddressesFromAsiToKassi < ActiveRecord::Migration
+class CopyAddressesFromAsiToKassi < ActiveRecord::Migration[4.2]
   def self.up
     say "It is RECOMMENDED to change the 'set_property :delta => true' to false in listing.rb before running this migration, since delta indexing makes it really slow if there are lot of listings."
     say "Just remember to turn it back on afterwards!", true

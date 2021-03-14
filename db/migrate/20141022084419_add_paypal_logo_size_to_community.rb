@@ -1,6 +1,6 @@
 require File.expand_path('../../migrate_helpers/logging_helpers', __FILE__)
 
-class AddPaypalLogoSizeToCommunity < ActiveRecord::Migration
+class AddPaypalLogoSizeToCommunity < ActiveRecord::Migration[4.2]
   include LoggingHelper
 
   def up

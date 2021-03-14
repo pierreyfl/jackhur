@@ -1,4 +1,4 @@
-class RenameDropdownValueToDropdownFieldValue < ActiveRecord::Migration
+class RenameDropdownValueToDropdownFieldValue < ActiveRecord::Migration[4.2]
   def up
     # Update all doesn't play nicely with default scope
     # http://apidock.com/rails/ActiveRecord/Base/update_all/class#1056-update-all-and-delete-all-don-t-play-nicely-with-default-scope

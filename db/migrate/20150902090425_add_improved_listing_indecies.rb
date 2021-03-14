@@ -1,4 +1,4 @@
-class AddImprovedListingIndecies < ActiveRecord::Migration
+class AddImprovedListingIndecies < ActiveRecord::Migration[4.2]
   def up
     add_index "listings", ["community_id", "open", "sort_date"], :name => "homepage_query"
     add_index "listings", ["community_id", "open", "valid_until", "sort_date"], :name => "homepage_query_valid_until"

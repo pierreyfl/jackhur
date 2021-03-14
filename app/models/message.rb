@@ -2,12 +2,17 @@
 #
 # Table name: messages
 #
-#  id              :integer          not null, primary key
-#  sender_id       :string(255)
-#  content         :text(65535)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  conversation_id :integer
+#  id                 :integer          not null, primary key
+#  sender_id          :string(255)
+#  content            :text(65535)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  conversation_id    :integer
+#  video_file_name    :string(255)
+#  video_content_type :string(255)
+#  video_file_size    :integer
+#  video_updated_at   :datetime
+#  counter_offer      :float(24)
 #
 # Indexes
 #
@@ -20,6 +25,10 @@ class Message < ApplicationRecord
 
   belongs_to :sender, :class_name => "Person"
   belongs_to :conversation
+
+  has_attached_file :video, :styles => {:medium => { :geometry => "300x300", :format => 'mp4'},:thumb => {:geometry => "100x100#", :format => 'jpg', :time => 15}
+    }, :processors => [:ffmpeg]
+  validates_attachment_content_type :video, content_type: %w(video/mp4 video/3gp video/webm image/jpeg image/jpg image/png) 
 
   validates_presence_of :sender_id
   validates_presence_of :content

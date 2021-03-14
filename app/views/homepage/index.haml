@@ -66,13 +66,13 @@
         .home-toolbar-show-filters-button#home-toolbar-show-filters
           = t(".filter")
 
-    .home-toolbar-button-group{:class => listing_shape_menu_enabled || @category_menu_enabled ? "filters-enabled" : ""}
-      - allowed_view_types.each do |view_type|
-        - selected_class = @view_type == view_type ? "selected" : ""
-        = link_to search_path(search_params.merge(view: view_type)), :class => "home-toolbar-button-group-button #{selected_class}", :title => t("homepage.filters.#{view_type}_button") do
-          = icon_tag(view_type, ["icon-fix", "home-button-group-icon"])
-          %span.home-toolbar-button-text
-            = t("homepage.filters.#{view_type}_button")
+    -#.home-toolbar-button-group{:class => listing_shape_menu_enabled || @category_menu_enabled ? "filters-enabled" : ""}
+      -# allowed_view_types.each do |view_type|
+        -# selected_class = @view_type == view_type ? "selected" : ""
+        =# link_to search_path(search_params.merge(view: view_type)), :class => "home-toolbar-button-group-button #{selected_class}", :title => t("homepage.filters.#{view_type}_button") do
+          =# icon_tag(view_type, ["icon-fix", "home-button-group-icon"])
+          -#%span.home-toolbar-button-text
+            =# t("homepage.filters.#{view_type}_button")
 
     - if listing_shape_menu_enabled || @category_menu_enabled
       .home-toolbar-filters.home-toolbar-filters-mobile-hidden#home-toolbar-filters
@@ -93,6 +93,7 @@
               - shapes.each do |shape|
                 = link_to search_path(search_params.merge({transaction_type: shape[:name]})), class:  "toggle-menu-subitem" do
                   = t(shape[:name_tr_key])
+              = link_to "Sort by relevance", search_path(search_params.merge({transaction_type: "all"}))
 
         - if @show_categories
           .toggle-container.home-toolbar-toggle-container.hidden-tablet
@@ -121,8 +122,8 @@
             = render :partial => "filters", :locals => { show_price_filter: show_price_filter, show_custom_fields: @show_custom_fields, filters: filters }
 
   .row
-    - if @category_menu_enabled
-      .col-3.visible-tablet
+    -# if @category_menu_enabled
+      //.col-3.visible-tablet
         - if @show_categories
           .row
             .col-12
@@ -139,7 +140,7 @@
         #desktop-filters
           - # Filters will be relocated here when in desktop
 
-    - main_container_class = if @category_menu_enabled then "col-9" else "col-12" end
+    - main_container_class = if @category_menu_enabled then "col-12" else "col-12" end
     %div{:class => main_container_class}
       - if @listings.total_entries > 0
         - if @view_type.eql?("map")
@@ -149,7 +150,8 @@
           - if @view_type.eql?("grid")
             %div{class: @category_menu_enabled ? "home-fluid-thumbnail-grid-narrow" : "home-fluid-thumbnail-grid-wide"}
               .home-fluid-thumbnail-grid
-                = render partial: "grid_item", collection: @listings, as: :listing, locals: { show_distance: location_search_in_use }
+                =# render partial: "grid_item", collection: @listings, as: :listing, locals: { show_distance: location_search_in_use }
+                = render partial: "redesign_item", collection: @listings, as: :listing, locals: { show_distance: location_search_in_use }
           - else
             .home-listings
               - if (location_search_in_use)

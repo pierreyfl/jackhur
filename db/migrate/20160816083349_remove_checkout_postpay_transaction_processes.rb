@@ -1,4 +1,4 @@
-class RemoveCheckoutPostpayTransactionProcesses < ActiveRecord::Migration
+class RemoveCheckoutPostpayTransactionProcesses < ActiveRecord::Migration[4.2]
   def up
     execute("
       DELETE transaction_processes FROM transaction_processes

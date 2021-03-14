@@ -18,7 +18,7 @@ class ShareType < ApplicationRecord
 
 end
 
-class FixPriceQuantityPlaceholders < ActiveRecord::Migration
+class FixPriceQuantityPlaceholders < ActiveRecord::Migration[4.2]
 
 
   def up

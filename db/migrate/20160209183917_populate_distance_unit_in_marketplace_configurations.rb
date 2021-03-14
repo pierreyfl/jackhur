@@ -1,4 +1,4 @@
-class PopulateDistanceUnitInMarketplaceConfigurations < ActiveRecord::Migration
+class PopulateDistanceUnitInMarketplaceConfigurations < ActiveRecord::Migration[4.2]
   def up
     # Run this population script after all the codes are in production
     execute("

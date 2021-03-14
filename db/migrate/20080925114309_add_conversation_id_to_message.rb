@@ -1,4 +1,4 @@
-class AddConversationIdToMessage < ActiveRecord::Migration
+class AddConversationIdToMessage < ActiveRecord::Migration[4.2]
   def self.up
     add_column :messages, :conversation_id, :integer
   end

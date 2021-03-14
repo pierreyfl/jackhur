@@ -1,4 +1,4 @@
-class AddFeedbackSkippedToParticipation < ActiveRecord::Migration
+class AddFeedbackSkippedToParticipation < ActiveRecord::Migration[4.2]
   def self.up
     add_column :participations, :feedback_skipped, :boolean, :default => false
   end

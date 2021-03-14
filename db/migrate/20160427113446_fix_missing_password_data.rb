@@ -1,4 +1,4 @@
-class FixMissingPasswordData < ActiveRecord::Migration
+class FixMissingPasswordData < ActiveRecord::Migration[4.2]
   def up
     exec_update(
       "UPDATE people

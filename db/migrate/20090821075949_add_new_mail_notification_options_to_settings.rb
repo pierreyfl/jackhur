@@ -1,4 +1,4 @@
-class AddNewMailNotificationOptionsToSettings < ActiveRecord::Migration
+class AddNewMailNotificationOptionsToSettings < ActiveRecord::Migration[4.2]
   def self.up
     add_column :settings, :email_when_new_kassi_event, :integer, :default => 1
     add_column :settings, :email_when_new_comment_to_kassi_event, :integer, :default => 1

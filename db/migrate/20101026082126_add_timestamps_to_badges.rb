@@ -1,4 +1,4 @@
-class AddTimestampsToBadges < ActiveRecord::Migration
+class AddTimestampsToBadges < ActiveRecord::Migration[4.2]
   def self.up
     change_table :badges do |t|
       t.timestamps

@@ -1,4 +1,4 @@
-class AddEmailNewslettersToPersonPreferences < ActiveRecord::Migration
+class AddEmailNewslettersToPersonPreferences < ActiveRecord::Migration[4.2]
   def self.up
     Person.all.each do |person|
       if person.preferences.nil?

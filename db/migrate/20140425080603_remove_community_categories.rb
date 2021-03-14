@@ -1,4 +1,4 @@
-class RemoveCommunityCategories < ActiveRecord::Migration
+class RemoveCommunityCategories < ActiveRecord::Migration[4.2]
   def up
     drop_table :community_categories
   end

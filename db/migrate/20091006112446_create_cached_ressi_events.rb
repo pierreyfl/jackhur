@@ -1,4 +1,4 @@
-class CreateCachedRessiEvents < ActiveRecord::Migration
+class CreateCachedRessiEvents < ActiveRecord::Migration[4.2]
   def self.up
     create_table :cached_ressi_events, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
       t.string :user_id

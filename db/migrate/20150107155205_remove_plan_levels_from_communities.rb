@@ -1,4 +1,4 @@
-class RemovePlanLevelsFromCommunities < ActiveRecord::Migration
+class RemovePlanLevelsFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :plan_level
   end

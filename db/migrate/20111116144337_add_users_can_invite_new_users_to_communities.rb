@@ -1,4 +1,4 @@
-class AddUsersCanInviteNewUsersToCommunities < ActiveRecord::Migration
+class AddUsersCanInviteNewUsersToCommunities < ActiveRecord::Migration[4.2]
   def self.up
     add_column :communities, :users_can_invite_new_users, :boolean, :default => 0
   end

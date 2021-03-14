@@ -1,4 +1,4 @@
-class PopulateMarketplacePlansStatus < ActiveRecord::Migration
+class PopulateMarketplacePlansStatus < ActiveRecord::Migration[4.2]
   def up
     exec_update("UPDATE marketplace_plans SET status = 'trial' WHERE plan_level = 0", "Set trial status", [])
     exec_update("UPDATE marketplace_plans SET status = 'hold' WHERE plan_level = 5", "Set hold status", [])

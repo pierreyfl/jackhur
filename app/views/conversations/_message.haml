@@ -20,3 +20,7 @@
         %div
           - text_with_line_breaks do
             = message_or_action[:content]
+        %div
+          - unless message_or_action[:video] == nil
+            - unless message_or_action[:video].url == "/videos/original/missing.png"
+              = video_tag message_or_action[:video].url, controls: true, style: "max-width: 100%;"

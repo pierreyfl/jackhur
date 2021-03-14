@@ -1,4 +1,4 @@
-class RemoveUseCaptchaFromCommunities < ActiveRecord::Migration
+class RemoveUseCaptchaFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :use_captcha
   end

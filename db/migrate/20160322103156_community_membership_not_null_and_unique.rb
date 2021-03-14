@@ -1,4 +1,4 @@
-class CommunityMembershipNotNullAndUnique < ActiveRecord::Migration
+class CommunityMembershipNotNullAndUnique < ActiveRecord::Migration[4.2]
   def up
     change_column :community_memberships, :person_id, :string, null: false
     change_column :community_memberships, :community_id, :integer, null: false

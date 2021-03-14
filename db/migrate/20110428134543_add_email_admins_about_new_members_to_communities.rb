@@ -1,4 +1,4 @@
-class AddEmailAdminsAboutNewMembersToCommunities < ActiveRecord::Migration
+class AddEmailAdminsAboutNewMembersToCommunities < ActiveRecord::Migration[4.2]
   def self.up
     add_column :communities, :email_admins_about_new_members, :boolean, :default => 0
   end

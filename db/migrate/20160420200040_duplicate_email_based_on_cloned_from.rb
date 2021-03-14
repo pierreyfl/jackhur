@@ -1,4 +1,4 @@
-class DuplicateEmailBasedOnClonedFrom < ActiveRecord::Migration
+class DuplicateEmailBasedOnClonedFrom < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO emails

@@ -165,13 +165,13 @@ module TransactionService::Transaction
     }
   end
 
-  def reject(community_id:, transaction_id:, message: nil, sender_id: nil)
+  def reject(community_id:, transaction_id:, message: nil, sender_id: nil, counter_offer: nil)
     tx = find_tx_model(community_id: community_id, transaction_id: transaction_id)
 
     tx_process = tx_process(tx.payment_process)
     gw = gateway_adapter(tx.payment_gateway)
 
-    res = tx_process.reject(tx: tx, message: message, sender_id: sender_id, gateway_adapter: gw)
+    res = tx_process.reject(tx: tx, message: message, sender_id: sender_id, gateway_adapter: gw, counter_offer: counter_offer)
     res.maybe()
       .map { |gw_fields| Result::Success.new(create_transaction_response(tx, gw_fields)) }
       .or_else(res)

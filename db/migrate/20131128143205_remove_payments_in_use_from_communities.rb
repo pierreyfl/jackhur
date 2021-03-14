@@ -1,4 +1,4 @@
-class RemovePaymentsInUseFromCommunities < ActiveRecord::Migration
+class RemovePaymentsInUseFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :payments_in_use
   end

@@ -1,4 +1,4 @@
-class ChangeFeedbackToAdminFromSymbolToString < ActiveRecord::Migration
+class ChangeFeedbackToAdminFromSymbolToString < ActiveRecord::Migration[4.2]
   def self.up
     Person.all.each do |person|
       person.preferences.delete(:email_about_accept_reminders)

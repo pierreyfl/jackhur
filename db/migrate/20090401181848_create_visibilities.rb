@@ -1,4 +1,4 @@
-class CreateVisibilities < ActiveRecord::Migration
+class CreateVisibilities < ActiveRecord::Migration[4.2]
   def self.up
     create_table :visibilities do |t|
       t.integer :visible_object_id

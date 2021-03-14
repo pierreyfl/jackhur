@@ -1,4 +1,4 @@
-class AddMenuLink < ActiveRecord::Migration
+class AddMenuLink < ActiveRecord::Migration[4.2]
   def up
     create_table :menu_links do |t|
       t.integer :community_id

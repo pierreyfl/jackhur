@@ -91,15 +91,18 @@ module TransactionService::Process
       }
     end
 
-    def reject(tx:, message:, sender_id:, gateway_adapter:)
+    def reject(tx:, message:, sender_id:, gateway_adapter:, counter_offer: nil)
       res = Gateway.unwrap_completion(
         gateway_adapter.reject_payment(tx: tx, reason: "")) do
-
-        TransactionService::StateMachine.transition_to(tx.id, :rejected)
+        if counter_offer != nil
+          TransactionService::StateMachine.transition_to(tx.id, :counter)
+        else
+          TransactionService::StateMachine.transition_to(tx.id, :rejected)
+        end
       end
 
       if res[:success] && message.present?
-        send_message(tx, message, sender_id)
+        send_message(tx, message, sender_id, counter_offer)
       end
 
       res
@@ -154,11 +157,15 @@ module TransactionService::Process
 
     private
 
-    def send_message(tx, message, sender_id)
+    def send_message(tx, message, sender_id, counter_offer=nil)
+      puts counter_offer
+      puts "SEND MESSAGE"
       TxStore.add_message(community_id: tx.community_id,
                           transaction_id: tx.id,
                           message: message,
-                          sender_id: sender_id)
+                          sender_id: sender_id,
+                          counter_offer: counter_offer
+                          )
     end
 
     def proc_status_response(proc_token)

@@ -1,4 +1,4 @@
-class DeleteAllPieceUnits < ActiveRecord::Migration
+class DeleteAllPieceUnits < ActiveRecord::Migration[4.2]
   # At this point there should not be any unit_type: :piece rows
   # However, due to a bug in previous commits, there might be some. Remove them now.
   def up

@@ -1,4 +1,4 @@
-class ChangeDataTypeForCommunityId < ActiveRecord::Migration
+class ChangeDataTypeForCommunityId < ActiveRecord::Migration[4.2]
   def up
     change_column :community_plans, :community_id,  :integer
   end

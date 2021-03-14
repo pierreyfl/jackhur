@@ -1,4 +1,4 @@
-class DropDomainAliasFromCommunities < ActiveRecord::Migration
+class DropDomainAliasFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :domain_alias
   end

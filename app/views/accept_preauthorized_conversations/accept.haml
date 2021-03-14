@@ -5,19 +5,38 @@
   :javascript
     (function() {
       var btn = $('#send_testimonial_button');
+      var counterField = $('#counter-offer-field');
+      var counterLabel = $('#counter-offer-label');
 
       btn.click(function() {
         disable_and_submit("#accept-reject-form", $("#accept-reject-form"), "false", '#{I18n.locale}');
       });
 
       ST.initializeRadioButtons({
-        buttons: [".js-accept-radio-button", ".js-accept-close-radio-button", ".js-reject-radio-button"],
+        buttons: [".js-accept-radio-button", ".js-accept-close-radio-button", ".js-reject-radio-button", ".js-counter-offer-radio-button"],
         input: ".js-accept-status",
         callback: function(selector) {
           switch(selector) {
-            case ".js-accept-radio-button": btn.text('#{t("conversations.accept.accept")}'); break;
-            case ".js-accept-close-radio-button": btn.text('#{t("conversations.accept.accept")}'); break;
-            case ".js-reject-radio-button": btn.text('#{t("conversations.accept.decline")}'); break;
+            case ".js-accept-radio-button": 
+              btn.text('#{t("conversations.accept.accept")}');
+              counterLabel.hide();
+              counterField.hide();
+              break;
+            case ".js-accept-close-radio-button": 
+              btn.text('#{t("conversations.accept.accept")}');
+              counterLabel.hide();
+              counterField.hide();
+              break;
+            case ".js-reject-radio-button": 
+              btn.text('#{t("conversations.accept.decline")}');
+              counterLabel.hide();
+              counterField.hide();
+              break;
+            case ".js-counter-offer-radio-button": 
+              btn.text('Counter');
+              counterLabel.show();
+              counterField.show();
+              break;
           }
         }
       })
@@ -165,12 +184,18 @@
     %a.radio-button-positive.js-accept-close-radio-button{ data: { :"radio-button-value" => 'paid_and_close' }, class: preselected_action == 'accept_and_close' ? 'radio-button-selected' : '' }
       .radio-button-icon{class: icon_for('accepted')}
       .radio-button-label= t('conversations.accept.accept_request_and_close')
+    %a.radio-button-negative.js-counter-offer-radio-button{ data: { :"radio-button-value" => 'counter_offer' }, class: preselected_action == 'counter_offer' ? 'radio-button-selected' : '' }
+      .radio-button-icon{class: icon_for('accepted')}
+      .radio-button-label
+        If necessary, reject the request and send a counter-offer
     %a.radio-button-negative.js-reject-radio-button{ data: { :"radio-button-value" => "rejected" }, class: preselected_action == "reject" ? "radio-button-selected" : "" }
       .radio-button-icon{class: icon_for("rejected")}
       .radio-button-label= t("conversations.accept.reject_request")
 
     %div
       = fields_for "transaction[message_attributes]", Message.new do |message_form|
+        = message_form.label :counter_offer, id: 'counter-offer-label', style: "display: none;"
+        = message_form.number_field :counter_offer, id: 'counter-offer-field', style: "display: none;"
         = message_form.label :content, t("conversations.new.message"), :class => "input"
         = message_form.text_area :content, :class => "text_area", :placeholder => t("conversations.accept.optional_message")
         = message_form.hidden_field :sender_id, :value => @current_user.id

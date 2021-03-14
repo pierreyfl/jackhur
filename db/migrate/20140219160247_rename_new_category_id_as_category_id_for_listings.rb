@@ -1,4 +1,4 @@
-class RenameNewCategoryIdAsCategoryIdForListings < ActiveRecord::Migration
+class RenameNewCategoryIdAsCategoryIdForListings < ActiveRecord::Migration[4.2]
 
   def up
     if column_exists? :listings, :new_category_id

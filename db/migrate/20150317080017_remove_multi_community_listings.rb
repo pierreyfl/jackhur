@@ -1,4 +1,4 @@
-class RemoveMultiCommunityListings < ActiveRecord::Migration
+class RemoveMultiCommunityListings < ActiveRecord::Migration[4.2]
 
   # Warning: This migration deletes data. Take backups.
   #

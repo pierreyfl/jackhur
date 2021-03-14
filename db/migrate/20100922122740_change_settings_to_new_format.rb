@@ -1,4 +1,4 @@
-class ChangeSettingsToNewFormat < ActiveRecord::Migration
+class ChangeSettingsToNewFormat < ActiveRecord::Migration[4.2]
   class Setting < ApplicationRecord
   end
   def self.up

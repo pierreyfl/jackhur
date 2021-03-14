@@ -1,4 +1,4 @@
-class AddCommissionDataToPaypalPayment < ActiveRecord::Migration
+class AddCommissionDataToPaypalPayment < ActiveRecord::Migration[4.2]
   def change
     add_column :paypal_payments, :commission_payment_id, :string, limit: 64
     add_column :paypal_payments, :commission_payment_date, :datetime

@@ -1,4 +1,4 @@
-class CreateShareTypes < ActiveRecord::Migration
+class CreateShareTypes < ActiveRecord::Migration[4.2]
   def self.up
     create_table :share_types do |t|
       t.integer :listing_id

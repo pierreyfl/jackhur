@@ -1,4 +1,4 @@
-class AddPriceFilterToCommunity < ActiveRecord::Migration
+class AddPriceFilterToCommunity < ActiveRecord::Migration[4.2]
   def change
     add_column :communities, :show_price_filter, :boolean, :default => false
     add_column :communities, :price_filter_min, :int, :default => 0

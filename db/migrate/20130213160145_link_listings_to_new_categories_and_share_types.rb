@@ -1,4 +1,4 @@
-class LinkListingsToNewCategoriesAndShareTypes < ActiveRecord::Migration
+class LinkListingsToNewCategoriesAndShareTypes < ActiveRecord::Migration[4.2]
   def up
     add_column :listings, :category_id, :integer
     add_column :listings, :share_type_id, :integer

@@ -1,4 +1,4 @@
-class AddOnboardingFieldsToOrderPermissions < ActiveRecord::Migration
+class AddOnboardingFieldsToOrderPermissions < ActiveRecord::Migration[4.2]
   def up
     add_column :order_permissions, :onboarding_id, :string, limit: 36, null: true
     add_column :order_permissions, :permissions_granted, :boolean, null: true

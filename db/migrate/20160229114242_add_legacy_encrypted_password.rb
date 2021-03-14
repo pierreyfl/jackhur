@@ -1,4 +1,4 @@
-class AddLegacyEncryptedPassword < ActiveRecord::Migration
+class AddLegacyEncryptedPassword < ActiveRecord::Migration[4.2]
   # Note: This migration will lose data and make logging in impossible without password resets when migrated down.
 
   def change

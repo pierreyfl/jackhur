@@ -1,4 +1,4 @@
-class CreatePaypalTokensTable < ActiveRecord::Migration
+class CreatePaypalTokensTable < ActiveRecord::Migration[4.2]
   def change
     create_table :paypal_tokens do |t|
       # I'm not exactly sure how long the token is, but 64 should be enough

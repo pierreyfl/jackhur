@@ -1,4 +1,4 @@
-class AddCommunityUpdatesFieldsToPeople < ActiveRecord::Migration
+class AddCommunityUpdatesFieldsToPeople < ActiveRecord::Migration[4.2]
   def up
     add_column :people, :community_updates_last_sent_at, :datetime
     add_column :people, :min_days_between_community_updates, :integer, :default => 1

@@ -1,4 +1,4 @@
-class EnsureRightVisibilityInListings < ActiveRecord::Migration
+class EnsureRightVisibilityInListings < ActiveRecord::Migration[4.2]
   def up
     # This operation is actually done once already, but as there was no validation for the visiblity
     # There may have been some done via API with old visibility

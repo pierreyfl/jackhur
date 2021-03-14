@@ -1,4 +1,4 @@
-class RemoveNameFromCommunities < ActiveRecord::Migration
+class RemoveNameFromCommunities < ActiveRecord::Migration[4.2]
   def up
     remove_column :communities, :name
   end

@@ -1,4 +1,4 @@
-class AddTypeToListing < ActiveRecord::Migration
+class AddTypeToListing < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :type, :string
   end

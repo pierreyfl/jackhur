@@ -8,6 +8,13 @@
       - if price_break_down_locals.present?
         = render partial: "transactions/price_break_down", locals: price_break_down_locals.merge(is_author: is_author)
 
+      - if @transaction.current_state == "counter"
+        %h2
+          Counter Offer
+        = render partial: "transactions/counter_price_break_down", locals: counter_price_break_down_locals.merge(is_author: is_author)
+        - unless is_author
+          = link_to "Accept", initiate_order_path(listing_id: 1, quantity: 1, counter: true, transaction_id: 18), class: "button"
+
       = render partial: "transactions/shipping_address", locals: { shipping_address: @transaction.shipping_address }
 
       %div{:id => "transaction_status"}

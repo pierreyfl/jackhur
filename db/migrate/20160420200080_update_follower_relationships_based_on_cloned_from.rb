@@ -1,4 +1,4 @@
-class UpdateFollowerRelationshipsBasedOnClonedFrom < ActiveRecord::Migration
+class UpdateFollowerRelationshipsBasedOnClonedFrom < ActiveRecord::Migration[4.2]
   def up
     add_column :follower_relationships, :needs_to_be_deleted, :boolean, default: true
     ActiveRecord::Base.transaction do

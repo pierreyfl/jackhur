@@ -1,4 +1,4 @@
-class CreatePaypalRefunds < ActiveRecord::Migration
+class CreatePaypalRefunds < ActiveRecord::Migration[4.2]
   def change
     create_table :paypal_refunds do |t|
       t.integer :paypal_payment_id

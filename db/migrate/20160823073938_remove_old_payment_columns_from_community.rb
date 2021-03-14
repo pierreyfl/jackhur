@@ -1,4 +1,4 @@
-class RemoveOldPaymentColumnsFromCommunity < ActiveRecord::Migration
+class RemoveOldPaymentColumnsFromCommunity < ActiveRecord::Migration[4.2]
   def change
     remove_column :communities, :commission_from_seller, :integer, after: :vat
     remove_column :communities, :vat, :integer, after: :facebook_connect_enabled

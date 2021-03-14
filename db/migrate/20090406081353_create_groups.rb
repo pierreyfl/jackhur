@@ -1,11 +1,11 @@
-class CreateGroups < ActiveRecord::Migration
+class CreateGroups < ActiveRecord::Migration[4.2]
   def self.up
     create_table :groups, :id => false do |t|
       t.string :id, :limit => 22, :null => false
 
       t.timestamps
     end
-    execute "ALTER TABLE groups ADD PRIMARY KEY (id)"
+    #execute "ALTER TABLE groups ADD PRIMARY KEY (id)"
   end
 
   def self.down

@@ -1,4 +1,4 @@
-class MigratePriceQuantityPlaceholderToUnits < ActiveRecord::Migration
+class MigratePriceQuantityPlaceholderToUnits < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO listing_units (unit_type, quantity_selector, kind, listing_shape_id, created_at, updated_at)

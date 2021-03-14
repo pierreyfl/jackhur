@@ -1,4 +1,4 @@
-class AddDescriptionToListing < ActiveRecord::Migration
+class AddDescriptionToListing < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :description, :text
   end

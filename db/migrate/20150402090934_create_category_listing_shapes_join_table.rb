@@ -1,4 +1,4 @@
-class CreateCategoryListingShapesJoinTable < ActiveRecord::Migration
+class CreateCategoryListingShapesJoinTable < ActiveRecord::Migration[4.2]
   def change
     create_table :category_listing_shapes, id: false do |t|
       t.integer :category_id, null: false

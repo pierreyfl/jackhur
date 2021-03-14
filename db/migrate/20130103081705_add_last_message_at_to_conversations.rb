@@ -1,4 +1,4 @@
-class AddLastMessageAtToConversations < ActiveRecord::Migration
+class AddLastMessageAtToConversations < ActiveRecord::Migration[4.2]
   def up
     add_column :conversations, :last_message_at, :datetime
     Conversation.all.each do |c|

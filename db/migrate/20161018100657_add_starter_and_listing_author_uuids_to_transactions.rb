@@ -1,4 +1,4 @@
-class AddStarterAndListingAuthorUuidsToTransactions < ActiveRecord::Migration
+class AddStarterAndListingAuthorUuidsToTransactions < ActiveRecord::Migration[4.2]
 
   def up
     # `add_column` with `:binary, limit: 16` uses the VARBINARY type,

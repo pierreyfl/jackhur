@@ -1,4 +1,4 @@
-class RemoveStatusFromConversation < ActiveRecord::Migration
+class RemoveStatusFromConversation < ActiveRecord::Migration[4.2]
   def up
     remove_column :conversations, :status
   end

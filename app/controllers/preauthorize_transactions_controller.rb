@@ -11,6 +11,11 @@ class PreauthorizeTransactionsController < ApplicationController
 
   def initiate
     params_validator = params_per_hour? ? TransactionService::Validation::NewPerHourTransactionParams : TransactionService::Validation::NewTransactionParams
+    if params[:counter] == "true"
+      transaction = Transaction.find(params[:transaction_id])
+      @abc = "TEST TEST"
+      @transaction = transaction.current_state
+    end
     validation_result = params_validator.validate(params.to_unsafe_hash).and_then { |params_entity|
       tx_params = add_defaults(
         params: params_entity,
@@ -240,6 +245,8 @@ class PreauthorizeTransactionsController < ApplicationController
   end
 
   def create_preauth_transaction(opts)
+    puts "TEST TEST TEST"
+    puts opts
     case opts[:payment_type].to_sym
     when :paypal
       # PayPal doesn't like images with cache buster in the URL
@@ -266,6 +273,32 @@ class PreauthorizeTransactionsController < ApplicationController
         }
     end
 
+    if opts[:counter]
+      transaction = {
+          community_id: opts[:community].id,
+          community_uuid: opts[:community].uuid_object,
+          listing_id: opts[:listing].id,
+          listing_uuid: opts[:listing].uuid_object,
+          listing_title: opts[:listing].title,
+          starter_id: opts[:user].id,
+          starter_uuid: opts[:user].uuid_object,
+          listing_author_id: opts[:listing].author.id,
+          listing_author_uuid: opts[:listing].author.uuid_object,
+          listing_quantity: opts[:listing_quantity],
+          unit_type: opts[:listing].unit_type,
+          unit_price: Money.new(5000, "EUR"),
+          unit_tr_key: opts[:listing].unit_tr_key,
+          unit_selector_tr_key: opts[:listing].unit_selector_tr_key,
+          availability: opts[:listing].availability,
+          content: opts[:content],
+          video: opts[:video],
+          payment_gateway: opts[:payment_type].to_sym,
+          payment_process: :preauthorize,
+          booking_fields: opts[:booking_fields],
+          delivery_method: opts[:delivery_method] || :none
+    }
+  else
+
     transaction = {
           community_id: opts[:community].id,
           community_uuid: opts[:community].uuid_object,
@@ -283,11 +316,13 @@ class PreauthorizeTransactionsController < ApplicationController
           unit_selector_tr_key: opts[:listing].unit_selector_tr_key,
           availability: opts[:listing].availability,
           content: opts[:content],
+          video: opts[:video],
           payment_gateway: opts[:payment_type].to_sym,
           payment_process: :preauthorize,
           booking_fields: opts[:booking_fields],
           delivery_method: opts[:delivery_method] || :none
     }
+  end
 
     if(opts[:delivery_method] == :shipping)
       transaction[:shipping_price] = opts[:shipping_price]
@@ -326,7 +361,11 @@ class PreauthorizeTransactionsController < ApplicationController
     order = TransactionService::Order.new(
       community: @current_community,
       tx_params: tx_params,
-      listing: listing)
+      listing: listing, 
+      transaction: Transaction.find(18)
+      )
+
+
 
     render "listing_conversations/initiate",
            locals: {
@@ -348,7 +387,8 @@ class PreauthorizeTransactionsController < ApplicationController
              form_action: initiated_order_path(person_id: @current_user.id, listing_id: listing.id),
              country_code: LocalizationUtils.valid_country_code(@current_community.country),
              paypal_analytics_event: paypal_event_params(listing),
-             price_break_down_locals: order.price_break_down_locals
+             price_break_down_locals: order.price_break_down_locals,
+             counter_price_break_down_locals: order.counter_price_break_down_locals
            }
   end
 
@@ -377,18 +417,51 @@ class PreauthorizeTransactionsController < ApplicationController
   end
 
   def initiated_success(tx_params)
-    order = TransactionService::Order.new(
+    if params[:counter] == "true"
+      order = TransactionService::Order.new(
       community: @current_community,
       tx_params: tx_params,
-      listing: listing)
+      listing: listing,
+      transaction: Transaction.find(18)
+      )
 
-    tx_response = create_preauth_transaction(
+      tx_response = create_preauth_transaction(
       payment_type: params[:payment_type].to_sym,
       community: @current_community,
       listing: listing,
       listing_quantity: order.quantity,
       user: @current_user,
       content: tx_params[:message],
+      video: tx_params[:video],
+      force_sync: !request.xhr?,
+      delivery_method: tx_params[:delivery],
+      shipping_price: order.shipping_total,
+      transaction: Transaction.find(18),
+      counter: true,
+      booking_fields: {
+        start_on: tx_params[:start_on],
+        end_on: tx_params[:end_on],
+        start_time: tx_params[:start_time],
+        end_time: tx_params[:end_time],
+        per_hour: tx_params[:per_hour]
+      })
+
+    else
+      order = TransactionService::Order.new(
+        community: @current_community,
+        tx_params: tx_params,
+        listing: listing,
+        transaction: Transaction.find(18)
+        )
+
+      tx_response = create_preauth_transaction(
+      payment_type: params[:payment_type].to_sym,
+      community: @current_community,
+      listing: listing,
+      listing_quantity: order.quantity,
+      user: @current_user,
+      content: tx_params[:message],
+      video: tx_params[:video],
       force_sync: !request.xhr?,
       delivery_method: tx_params[:delivery],
       shipping_price: order.shipping_total,
@@ -399,6 +472,8 @@ class PreauthorizeTransactionsController < ApplicationController
         end_time: tx_params[:end_time],
         per_hour: tx_params[:per_hour]
       })
+    end
+
 
     handle_tx_response(tx_response, params[:payment_type].to_sym)
   end

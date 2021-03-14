@@ -1,4 +1,4 @@
-class AddCustomColor2ToCommunities < ActiveRecord::Migration
+class AddCustomColor2ToCommunities < ActiveRecord::Migration[4.2]
   def up
     rename_column :communities, :custom_color, :custom_color1
     add_column :communities, :custom_color2, :string

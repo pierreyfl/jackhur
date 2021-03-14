@@ -1,4 +1,4 @@
-class PopulateVerificationStatus < ActiveRecord::Migration
+class PopulateVerificationStatus < ActiveRecord::Migration[4.2]
   def up
     execute("UPDATE marketplace_sender_emails SET verification_status = 'verified'")
   end

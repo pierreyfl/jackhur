@@ -155,7 +155,8 @@ class TransactionsController < ApplicationController
       role: role,
       message_form: Message.new({sender_id: @current_user.id, conversation_id: @conversation.id}),
       message_form_action: person_message_messages_path(@current_user, :message_id => @conversation.id),
-      price_break_down_locals: price_break_down_locals(@transaction, @conversation)
+      price_break_down_locals: price_break_down_locals(@transaction, @conversation),
+      counter_price_break_down_locals: counter_price_break_down_locals(@transaction, @conversation)
     }
   end
 
@@ -351,6 +352,46 @@ class TransactionsController < ApplicationController
       Result::Error.new("Message cannot be empty")
     else
       Result::Success.new
+    end
+  end
+
+  def counter_price_break_down_locals(tx, conversation)
+    if tx.payment_process == :none && tx.unit_price.cents == 0 || conversation.starting_page == Conversation::LISTING || tx.current_state != "counter"
+      nil
+    else
+      localized_unit_type = tx.unit_type.present? ? ListingViewUtils.translate_unit(tx.unit_type, tx.unit_tr_key) : nil
+      localized_selector_label = tx.unit_type.present? ? ListingViewUtils.translate_quantity(tx.unit_type, tx.unit_selector_tr_key) : nil
+      booking = !!tx.booking
+      booking_per_hour = tx.booking&.per_hour
+      quantity = tx.listing_quantity
+      show_subtotal = !!tx.booking || quantity.present? && quantity > 1 || tx.shipping_price.present?
+      total_label = (tx.payment_process != :preauthorize) ? t("transactions.price") : t("transactions.total")
+      payment = TransactionService::Transaction.payment_details(tx)
+      counter_price = Money.new(conversation.messages.where.not(counter_offer: nil).last.counter_offer * 100, 'EUR')
+      fee = tx.counter_commission(counter_price)
+      buyer_fee = tx.counter_buyer_commission(counter_price)
+
+      TransactionViewUtils.price_break_down_locals({
+        listing_price: counter_price,
+        localized_unit_type: localized_unit_type,
+        localized_selector_label: localized_selector_label,
+        booking: booking,
+        start_on: booking ? tx.booking.start_on : nil,
+        end_on: booking ? tx.booking.end_on : nil,
+        duration: booking ? tx.listing_quantity : nil,
+        quantity: quantity,
+        subtotal: show_subtotal ? tx.item_total : nil,
+        total: buyer_fee + counter_price,
+        seller_gets: counter_price - fee,
+        fee: fee,
+        shipping_price: tx.shipping_price,
+        total_label: total_label,
+        unit_type: tx.unit_type,
+        per_hour: booking_per_hour,
+        start_time: booking_per_hour ? tx.booking.start_time : nil,
+        end_time: booking_per_hour ? tx.booking.end_time : nil,
+        buyer_fee: buyer_fee
+      })
     end
   end
 

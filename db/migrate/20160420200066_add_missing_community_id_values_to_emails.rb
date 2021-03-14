@@ -1,4 +1,4 @@
-class AddMissingCommunityIdValuesToEmails < ActiveRecord::Migration
+class AddMissingCommunityIdValuesToEmails < ActiveRecord::Migration[4.2]
 
   # The migration that duplicates emails is already adding
   # community_id to those newly created rows. This

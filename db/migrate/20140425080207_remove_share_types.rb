@@ -1,4 +1,4 @@
-class RemoveShareTypes < ActiveRecord::Migration
+class RemoveShareTypes < ActiveRecord::Migration[4.2]
   def up
     drop_table :share_type_translations
     drop_table :share_types

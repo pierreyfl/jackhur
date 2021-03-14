@@ -1,4 +1,4 @@
-class AddCommunityIdToLocations < ActiveRecord::Migration
+class AddCommunityIdToLocations < ActiveRecord::Migration[4.2]
   def self.up
     add_column :locations, :community_id, :integer
   end

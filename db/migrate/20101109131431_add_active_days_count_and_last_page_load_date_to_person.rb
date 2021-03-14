@@ -1,4 +1,4 @@
-class AddActiveDaysCountAndLastPageLoadDateToPerson < ActiveRecord::Migration
+class AddActiveDaysCountAndLastPageLoadDateToPerson < ActiveRecord::Migration[4.2]
   def self.up
     add_column :people, :active_days_count, :integer, :default => 0
     add_column :people, :last_page_load_date, :datetime

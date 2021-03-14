@@ -5,8 +5,9 @@ module TransactionViewUtils
 
   MessageBubble = EntityUtils.define_builder(
     [:content, :string, :mandatory],
+    [:video],
     [:sender, :mandatory],
-    [:created_at, :time, :mandatory],
+    [:created_at, :time],
     [:mood, one_of: [:positive, :negative, :neutral]],
     [:admin, :to_bool, :optional]
   )
@@ -77,6 +78,7 @@ module TransactionViewUtils
     messages.map { |message|
       MessageBubble.call(
         content: message.content,
+        video: message.video,
         sender: message.sender,
         created_at: message.created_at,
         mood: :neutral
@@ -117,6 +119,11 @@ module TransactionViewUtils
         mood: :positive
       }
     when "rejected"
+      {
+        sender: author,
+        mood: :negative
+      }
+    when "counter"
       {
         sender: author,
         mood: :negative
@@ -193,6 +200,8 @@ module TransactionViewUtils
       t("conversations.message.accepted_request")
     when "rejected"
       t("conversations.message.rejected_request")
+    when "counter"
+      "Created a counter offer"
     when preauthorize_accepted
       if payment_gateway == :stripe
         if show_sum

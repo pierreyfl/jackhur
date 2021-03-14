@@ -1,4 +1,4 @@
-class FixActionButtonLabels < ActiveRecord::Migration
+class FixActionButtonLabels < ActiveRecord::Migration[4.2]
   def up
     TransactionTypeTranslation.find_each do |translation|
       

@@ -1,4 +1,4 @@
-class PaypalAccountEmailCanBeNull < ActiveRecord::Migration
+class PaypalAccountEmailCanBeNull < ActiveRecord::Migration[4.2]
   def up
     change_column_null :paypal_accounts, :email, true
   end

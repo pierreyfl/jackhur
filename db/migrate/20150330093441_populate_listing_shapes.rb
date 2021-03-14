@@ -1,4 +1,4 @@
-class PopulateListingShapes < ActiveRecord::Migration
+class PopulateListingShapes < ActiveRecord::Migration[4.2]
   def up
     execute("
       INSERT INTO listing_shapes (

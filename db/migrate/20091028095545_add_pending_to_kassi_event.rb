@@ -1,4 +1,4 @@
-class AddPendingToKassiEvent < ActiveRecord::Migration
+class AddPendingToKassiEvent < ActiveRecord::Migration[4.2]
   def self.up
     add_column :kassi_events, :pending, :integer, :default => 0
   end

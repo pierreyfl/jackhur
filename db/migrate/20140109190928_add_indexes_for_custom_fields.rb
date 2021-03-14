@@ -1,4 +1,4 @@
-class AddIndexesForCustomFields < ActiveRecord::Migration
+class AddIndexesForCustomFields < ActiveRecord::Migration[4.2]
   def up
   	add_index :custom_fields, :community_id
   	add_index :custom_field_names, :custom_field_id

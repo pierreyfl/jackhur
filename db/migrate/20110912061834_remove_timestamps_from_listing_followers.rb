@@ -1,4 +1,4 @@
-class RemoveTimestampsFromListingFollowers < ActiveRecord::Migration
+class RemoveTimestampsFromListingFollowers < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :listing_followers, :created_at
     remove_column :listing_followers, :updated_at

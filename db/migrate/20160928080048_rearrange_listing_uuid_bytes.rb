@@ -1,4 +1,4 @@
-class RearrangeListingUuidBytes < ActiveRecord::Migration
+class RearrangeListingUuidBytes < ActiveRecord::Migration[4.2]
   def up
     # This migration could not be completed. Therefore it is changed
     # into blank and another migration will do the same thing in a

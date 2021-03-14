@@ -1,4 +1,4 @@
-class MakeDisabledListingsClosed < ActiveRecord::Migration
+class MakeDisabledListingsClosed < ActiveRecord::Migration[4.2]
   def up
     # There may be some old listings with visibility "disabled" in the database
     # These were originally items and favors in Sharetribe 1.0 and it's time to migrate them as normal closed listings

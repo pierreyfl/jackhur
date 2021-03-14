@@ -1,4 +1,4 @@
-class CreateCheckoutAccount < ActiveRecord::Migration
+class CreateCheckoutAccount < ActiveRecord::Migration[4.2]
   def change
     create_table :checkout_accounts do |t|
       t.string :company_id, null: true

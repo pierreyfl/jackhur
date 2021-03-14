@@ -1,4 +1,4 @@
-class AddOpenToListing < ActiveRecord::Migration
+class AddOpenToListing < ActiveRecord::Migration[4.2]
   def self.up
     add_column :listings, :open, :boolean, :default => true
   end

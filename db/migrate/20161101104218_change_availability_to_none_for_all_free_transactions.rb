@@ -1,4 +1,4 @@
-class ChangeAvailabilityToNoneForAllFreeTransactions < ActiveRecord::Migration
+class ChangeAvailabilityToNoneForAllFreeTransactions < ActiveRecord::Migration[4.2]
   def up
     name = "Change availability to :none for all :free transactions"
 

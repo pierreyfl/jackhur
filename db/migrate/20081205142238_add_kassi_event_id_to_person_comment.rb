@@ -1,4 +1,4 @@
-class AddKassiEventIdToPersonComment < ActiveRecord::Migration
+class AddKassiEventIdToPersonComment < ActiveRecord::Migration[4.2]
   def self.up
     add_column :person_comments, :kassi_event_id, :integer
   end

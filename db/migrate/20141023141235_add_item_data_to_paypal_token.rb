@@ -1,4 +1,4 @@
-class AddItemDataToPaypalToken < ActiveRecord::Migration
+class AddItemDataToPaypalToken < ActiveRecord::Migration[4.2]
   def change
     add_column :paypal_tokens, :item_name, :string
     add_column :paypal_tokens, :item_quantity, :integer

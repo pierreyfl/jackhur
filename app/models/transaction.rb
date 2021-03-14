@@ -306,6 +306,14 @@ class Transaction < ApplicationRecord
       .max
   end
 
+  def counter_commission(counter_offer)
+    [(counter_offer * (commission_from_seller / 100.0) unless commission_from_seller.nil?),
+     (minimum_commission unless minimum_commission.nil? || minimum_commission.zero?),
+     Money.new(0, "EUR")]
+      .compact
+      .max
+  end
+
   def commission_per
     array = [(item_total * (commission_from_seller / 100.0) unless commission_from_seller.nil?),
              (minimum_commission unless minimum_commission.nil? || minimum_commission.zero?)]
@@ -322,6 +330,14 @@ class Transaction < ApplicationRecord
     [(item_total * (commission_from_buyer / 100.0) unless commission_from_buyer.nil?),
      (minimum_buyer_fee unless minimum_buyer_fee.nil? || minimum_buyer_fee.zero?),
      Money.new(0, item_total.currency)]
+      .compact
+      .max
+  end
+
+  def counter_buyer_commission(counter_offer)
+    [(counter_offer * (commission_from_seller / 100.0) unless commission_from_seller.nil?),
+     (minimum_commission unless minimum_commission.nil? || minimum_commission.zero?),
+     Money.new(0, "EUR")]
       .compact
       .max
   end

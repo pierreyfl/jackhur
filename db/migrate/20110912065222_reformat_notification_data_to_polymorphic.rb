@@ -1,4 +1,4 @@
-class ReformatNotificationDataToPolymorphic < ActiveRecord::Migration
+class ReformatNotificationDataToPolymorphic < ActiveRecord::Migration[4.2]
   def self.up
     Notification.all.each do |notification|
       if notification.badge_id

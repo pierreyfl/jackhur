@@ -1,4 +1,4 @@
-class AddUuidColumnToCommunities < ActiveRecord::Migration
+class AddUuidColumnToCommunities < ActiveRecord::Migration[4.2]
   def up
     execute "ALTER TABLE communities ADD uuid BINARY(16) AFTER `id`"
   end

@@ -1,4 +1,4 @@
-class AddProcessInBacgroundForCommunityImages < ActiveRecord::Migration
+class AddProcessInBacgroundForCommunityImages < ActiveRecord::Migration[4.2]
   def up
     change_table :communities do |t| 
       t.boolean :logo_processing

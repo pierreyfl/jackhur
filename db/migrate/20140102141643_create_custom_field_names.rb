@@ -1,4 +1,4 @@
-class CreateCustomFieldNames < ActiveRecord::Migration
+class CreateCustomFieldNames < ActiveRecord::Migration[4.2]
   def change
     create_table :custom_field_names do |t|
       t.string :value

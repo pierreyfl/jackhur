@@ -1,4 +1,4 @@
-class AddPersonIdToFeatureFlags < ActiveRecord::Migration
+class AddPersonIdToFeatureFlags < ActiveRecord::Migration[4.2]
   def change
     add_column :feature_flags, :person_id, :string, default: nil, null: true, after: :community_id
 

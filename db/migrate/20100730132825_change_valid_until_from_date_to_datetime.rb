@@ -1,4 +1,4 @@
-class ChangeValidUntilFromDateToDatetime < ActiveRecord::Migration
+class ChangeValidUntilFromDateToDatetime < ActiveRecord::Migration[4.2]
   def self.up
     change_column :listings, :valid_until, :datetime
   end

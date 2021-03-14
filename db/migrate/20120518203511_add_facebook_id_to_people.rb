@@ -1,4 +1,4 @@
-class AddFacebookIdToPeople < ActiveRecord::Migration
+class AddFacebookIdToPeople < ActiveRecord::Migration[4.2]
   def self.up
     add_column :people, :facebook_id, :string
     

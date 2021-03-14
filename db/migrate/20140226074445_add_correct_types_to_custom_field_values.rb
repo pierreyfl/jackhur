@@ -1,4 +1,4 @@
-class AddCorrectTypesToCustomFieldValues < ActiveRecord::Migration
+class AddCorrectTypesToCustomFieldValues < ActiveRecord::Migration[4.2]
   def change
     CustomFieldValue.find_each do |custom_field_value|
       custom_field_value.update_column(:type, "#{custom_field_value.question.class.to_s}Value")

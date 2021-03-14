@@ -1,4 +1,4 @@
-class AddTestGroupNumberToPerson < ActiveRecord::Migration
+class AddTestGroupNumberToPerson < ActiveRecord::Migration[4.2]
   def self.up
     add_column :people, :test_group_number, :integer, :default => 1
     Person.all.each_with_index do |person, index|

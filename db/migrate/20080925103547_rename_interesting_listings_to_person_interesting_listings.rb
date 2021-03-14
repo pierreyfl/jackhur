@@ -1,4 +1,4 @@
-class RenameInterestingListingsToPersonInterestingListings < ActiveRecord::Migration
+class RenameInterestingListingsToPersonInterestingListings < ActiveRecord::Migration[4.2]
   def self.up
     rename_table :interesting_listings, :person_interesting_listings
   end

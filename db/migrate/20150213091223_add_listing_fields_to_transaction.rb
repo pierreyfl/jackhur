@@ -1,4 +1,4 @@
-class AddListingFieldsToTransaction < ActiveRecord::Migration
+class AddListingFieldsToTransaction < ActiveRecord::Migration[4.2]
   def change
     add_column :transactions, :listing_title, :string, after: :listing_quantity
     add_column :transactions, :listing_author_id, :string, after: :listing_quantity

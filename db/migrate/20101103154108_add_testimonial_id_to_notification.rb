@@ -1,4 +1,4 @@
-class AddTestimonialIdToNotification < ActiveRecord::Migration
+class AddTestimonialIdToNotification < ActiveRecord::Migration[4.2]
   def self.up
     add_column :notifications, :testimonial_id, :integer
   end

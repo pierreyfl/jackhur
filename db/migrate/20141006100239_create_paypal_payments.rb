@@ -1,4 +1,4 @@
-class CreatePaypalPayments < ActiveRecord::Migration
+class CreatePaypalPayments < ActiveRecord::Migration[4.2]
   def change
     create_table :paypal_payments do |t|
       t.integer  :transaction_id, null: false

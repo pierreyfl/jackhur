@@ -1,4 +1,4 @@
-class AddEmailToInvitations < ActiveRecord::Migration
+class AddEmailToInvitations < ActiveRecord::Migration[4.2]
   def self.up
     add_column :invitations, :email, :string
   end

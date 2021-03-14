@@ -1,4 +1,4 @@
-class ProcessImagesForListingCards < ActiveRecord::Migration
+class ProcessImagesForListingCards < ActiveRecord::Migration[4.2]
 
   def up
     # Select listing images that are related to listings

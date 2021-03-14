@@ -1,4 +1,4 @@
-class MigrateCheckoutPostpayOrderTypesToFree < ActiveRecord::Migration
+class MigrateCheckoutPostpayOrderTypesToFree < ActiveRecord::Migration[4.2]
   def up
     # 1) Find all listing shapes (i.e. Order Types) where transaction process is "postpay" and payment gateway is "Checkout"
     # 2) Change the listing shapes' transaction process to "none"

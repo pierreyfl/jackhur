@@ -1,4 +1,4 @@
-class EditPersonComment < ActiveRecord::Migration
+class EditPersonComment < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :person_comments, :task_type
     remove_column :person_comments, :task_id
