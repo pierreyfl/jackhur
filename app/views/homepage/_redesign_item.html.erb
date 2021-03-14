@@ -282,15 +282,17 @@ figcaption {
 <div class="gig-card-layout">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/157891082/original/a11bd4aa33d147ebd07addc3b8e2d7fde42e03df/provide-the-best-trader-bot-at-the-best-price.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/18130029/original/0dc18ae753687c1e7dfb35f5059488919205650d.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/157891082/original/a11bd4aa33d147ebd07addc3b8e2d7fde42e03df/provide-the-best-trader-bot-at-the-best-price.jpg" alt="Third slide">
-    </div>
+    <% if listing.listing_images.size > 0 %>
+        <% listing.listing_images.each_with_index do |n, i| %>
+            <% if i == 0 %>
+                <div class="carousel-item active">
+            <% else %>
+                <div class="carousel-item>
+            <% end %>
+            <%= image_tag n[:thumb], class: "d-block w-100" %>
+            </div>
+        <% end %>
+    <% end %> 
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -313,4 +315,6 @@ figcaption {
          
                                 </div>
 
-                            </div></div></div><h3 class="text-display-7"><a href="/l812584/provide-the-best-trader-bot-at-the-best-price?context_referrer=search_gigs&amp;source=top-bar&amp;ref_ctx_id=6c6fc487-1c02-440d-8d59-928057f3dc8f&amp;pckg_id=1&amp;pos=5&amp;context_type=auto&amp;funnel=82834237-3286-4fff-b67f-757d127c5197" target="_blank" title="I will give you a tested and effective trader bot">I will <%= listing.title %></a></h3><footer><small class="text-body-3">100% RECOMMENDED</small><a href="/l812584/provide-the-best-trader-bot-at-the-best-price?context_referrer=search_gigs&amp;source=top-bar&amp;ref_ctx_id=6c6fc487-1c02-440d-8d59-928057f3dc8f&amp;pckg_id=1&amp;pos=5&amp;context_type=auto&amp;funnel=82834237-3286-4fff-b67f-757d127c5197" target="_blank" class="price" title="$85"><small class="text-body-3">Starting at</small><span><%= MoneyViewUtils.to_humanized(listing.price) || "Free" %></span></a></footer></div></div></div>
+                            </div></div></div><h3 class="text-display-7">
+                                <%= link_to listing_path(listing.url) do %>
+                                I will <%= listing.title %><% end %></h3><footer><small class="text-body-3">100% RECOMMENDED</small><%= link_to listing_path(listing.url), class: "price" do %><small class="text-body-3">Starting at</small><span><%= MoneyViewUtils.to_humanized(listing.price) || "Free" %></span><% end %></footer></div></div></div>
